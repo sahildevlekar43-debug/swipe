@@ -3,324 +3,232 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Dating App</title>
+<title>Our Match ❤️</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
 
 <style>
-
 *{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:'Poppins',sans-serif;
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
 }
 
 body{
-
-height:100vh;
-display:flex;
-justify-content:center;
-align-items:center;
-background:linear-gradient(135deg,#ffdde1,#ee9ca7);
-overflow:hidden;
-
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background:linear-gradient(135deg,#ffdde1,#ee9ca7);
+    overflow:hidden;
 }
 
 .phone{
-
-width:340px;
-height:690px;
-background:#fff;
-border-radius:40px;
-padding:18px;
-position:relative;
-box-shadow:0 25px 60px rgba(0,0,0,.25);
-overflow:hidden;
-border:10px solid #111;
-
+    width:340px;
+    height:670px;
+    background:#fff;
+    border-radius:40px;
+    border:10px solid #222;
+    position:relative;
+    overflow:hidden;
+    box-shadow:0 25px 60px rgba(0,0,0,.25);
 }
 
 .notch{
-
-width:140px;
-height:25px;
-background:#111;
-border-radius:20px;
-margin:auto;
-margin-bottom:20px;
-
+    width:140px;
+    height:26px;
+    background:#222;
+    border-radius:20px;
+    position:absolute;
+    top:10px;
+    left:50%;
+    transform:translateX(-50%);
 }
 
 .header{
-
-text-align:center;
-font-size:24px;
-font-weight:700;
-color:#ff4d6d;
-margin-bottom:20px;
-
+    margin-top:50px;
+    text-align:center;
+    font-size:24px;
+    font-weight:700;
+    color:#ff4f7a;
 }
 
 .card{
-
-width:100%;
-height:480px;
-background:#fafafa;
-border-radius:28px;
-overflow:hidden;
-position:relative;
-transition:.45s;
-
+    width:280px;
+    height:430px;
+    background:linear-gradient(160deg,#fff,#ffe8ee);
+    border-radius:25px;
+    margin:25px auto;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    box-shadow:0 12px 30px rgba(0,0,0,.12);
+    transition:.4s;
 }
 
-.card img{
-
-width:100%;
-height:100%;
-object-fit:cover;
-
+.avatar{
+    font-size:95px;
 }
 
-.overlay{
-
-position:absolute;
-bottom:0;
-width:100%;
-padding:24px;
-background:linear-gradient(transparent,rgba(0,0,0,.8));
-
+.name{
+    margin-top:20px;
+    font-size:30px;
+    font-weight:700;
+    color:#333;
 }
 
-.overlay h2{
-
-color:white;
-font-size:34px;
-
-}
-
-.overlay p{
-
-color:#eee;
-
+.tag{
+    color:#777;
+    margin-top:8px;
 }
 
 .buttons{
-
-display:flex;
-justify-content:center;
-gap:35px;
-margin-top:25px;
-
+    position:absolute;
+    bottom:35px;
+    width:100%;
+    display:flex;
+    justify-content:center;
+    gap:30px;
 }
 
 button{
-
-width:72px;
-height:72px;
-border-radius:50%;
-border:none;
-cursor:pointer;
-font-size:32px;
-transition:.25s;
-
+    width:70px;
+    height:70px;
+    border:none;
+    border-radius:50%;
+    font-size:30px;
+    cursor:pointer;
+    transition:.25s;
+    box-shadow:0 10px 20px rgba(0,0,0,.18);
 }
 
 .left{
-
-background:#fff;
-color:#ff4d6d;
-box-shadow:0 8px 20px rgba(0,0,0,.15);
-
+    background:#fff;
+    color:#ff4b5c;
 }
 
 .right{
-
-background:#ff4d6d;
-color:white;
-box-shadow:0 8px 20px rgba(0,0,0,.18);
-
+    background:#ff4f7a;
+    color:#fff;
 }
 
 button:hover{
-
-transform:scale(1.1);
-
+    transform:scale(1.12);
 }
 
-.popup{
-
-position:absolute;
-top:50%;
-left:50%;
-transform:translate(-50%,-50%);
-background:white;
-padding:20px 25px;
-border-radius:18px;
-box-shadow:0 15px 40px rgba(0,0,0,.2);
-font-size:18px;
-font-weight:600;
-text-align:center;
-opacity:0;
-pointer-events:none;
-transition:.35s;
-z-index:5;
-
+.overlay{
+    position:absolute;
+    inset:0;
+    background:rgba(255,255,255,.97);
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+    padding:30px;
+    opacity:0;
+    pointer-events:none;
+    transition:.35s;
 }
 
-.popup.show{
-
-opacity:1;
-
+.overlay.show{
+    opacity:1;
+    pointer-events:auto;
 }
 
-.success{
-
-position:absolute;
-inset:0;
-display:flex;
-flex-direction:column;
-justify-content:center;
-align-items:center;
-background:white;
-opacity:0;
-pointer-events:none;
-transition:.5s;
-
+.message{
+    margin-top:25px;
+    font-size:23px;
+    font-weight:700;
+    color:#ff4f7a;
 }
 
-.success.show{
-
-opacity:1;
-
-}
-
-.success h2{
-
-font-size:32px;
-margin-top:20px;
-color:#ff4d6d;
-
-}
-
-.success p{
-
-font-size:18px;
-margin-top:10px;
-color:#666;
-
+.sub{
+    margin-top:12px;
+    color:#555;
+    font-size:15px;
 }
 
 .doodle{
-
-font-size:120px;
-
+    font-size:90px;
+    animation:bounce 1.3s infinite;
 }
 
-@keyframes shake{
-
-0%{transform:translateX(0);}
-20%{transform:translateX(-10px);}
-40%{transform:translateX(10px);}
-60%{transform:translateX(-8px);}
-80%{transform:translateX(8px);}
-100%{transform:translateX(0);}
-
+@keyframes bounce{
+    50%{
+        transform:translateY(-12px);
+    }
 }
 
 .shake{
-
-animation:shake .45s;
-
+    animation:shake .35s;
 }
 
-@keyframes swipe{
-
-to{
-
-transform:translateX(450px) rotate(30deg);
-opacity:0;
-
+@keyframes shake{
+    20%{transform:translateX(-10px);}
+    40%{transform:translateX(10px);}
+    60%{transform:translateX(-8px);}
+    80%{transform:translateX(8px);}
 }
 
+.popup{
+    position:absolute;
+    top:110px;
+    left:50%;
+    transform:translateX(-50%);
+    background:#222;
+    color:#fff;
+    padding:14px 22px;
+    border-radius:15px;
+    font-size:15px;
+    opacity:0;
+    transition:.3s;
 }
 
-.swipe{
-
-animation:swipe .6s forwards;
-
+.popup.show{
+    opacity:1;
 }
-
-.heart{
-
-position:absolute;
-color:#ff4d6d;
-font-size:25px;
-animation:float 4s linear infinite;
-pointer-events:none;
-
-}
-
-@keyframes float{
-
-0%{
-
-transform:translateY(0) scale(.5);
-opacity:1;
-
-}
-
-100%{
-
-transform:translateY(-700px) scale(1.4);
-opacity:0;
-
-}
-
-}
-
 </style>
-
 </head>
+
 <body>
 
 <div class="phone">
 
 <div class="notch"></div>
 
-<div class="header">❤ MatchMe</div>
+<div class="header">❤️ SoulMatch</div>
 
-<div class="card" id="card">
-
-<img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43?w=800&q=80">
-
-<div class="overlay">
-<h2>Sahil</h2>
-<p>25 • Looking for my forever ❤️</p>
+<div class="popup" id="popup">
+Good try, you can't run away from me ❤️
 </div>
 
+<div class="card" id="card">
+<div class="avatar">😎</div>
+<div class="name">Sahil</div>
+<div class="tag">25 • Designer • Looking for You ✨</div>
 </div>
 
 <div class="buttons">
-
-<button class="left" id="left">✕</button>
-
+<button class="left" id="left">✖</button>
 <button class="right" id="right">❤</button>
-
 </div>
 
-<div class="popup" id="popup">
-Good try 😏<br>
-You can't run away from me!
+<div class="overlay" id="success">
+
+<div class="doodle">
+👩🏻‍❤️‍👨🏻
 </div>
 
-<div class="success" id="success">
+<div class="message">
+You found your soulmate ❤️
+</div>
 
-<div class="doodle">👩🏻‍❤️‍👨🏻</div>
-
-<h2>You found your soulmate ❤️</h2>
-
-<p>Some matches are simply meant to be.</p>
+<div class="sub">
+Looks like this swipe was meant to happen.
+</div>
 
 </div>
 
@@ -330,63 +238,31 @@ You can't run away from me!
 
 const left=document.getElementById("left");
 const right=document.getElementById("right");
-
 const popup=document.getElementById("popup");
-
 const card=document.getElementById("card");
-
 const success=document.getElementById("success");
 
-left.addEventListener("click",()=>{
+left.onclick=()=>{
 
 card.classList.add("shake");
 
 popup.classList.add("show");
 
 setTimeout(()=>{
-
 popup.classList.remove("show");
 card.classList.remove("shake");
-
 },1800);
 
-});
+}
 
-right.addEventListener("click",()=>{
+right.onclick=()=>{
 
-card.classList.add("swipe");
+card.style.transform="translateX(400px) rotate(20deg)";
+card.style.opacity="0";
 
 setTimeout(()=>{
-
 success.classList.add("show");
-
-createHearts();
-
-},600);
-
-});
-
-function createHearts(){
-
-for(let i=0;i<35;i++){
-
-const heart=document.createElement("div");
-
-heart.className="heart";
-
-heart.innerHTML="❤";
-
-heart.style.left=Math.random()*100+"%";
-
-heart.style.bottom="-30px";
-
-heart.style.animationDelay=Math.random()*2+"s";
-
-heart.style.fontSize=(18+Math.random()*20)+"px";
-
-document.body.appendChild(heart);
-
-}
+},300);
 
 }
 
