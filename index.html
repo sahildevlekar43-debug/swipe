@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>SoulMatch</title>
+<style>
+html,body{margin:0;height:100%;font-family:system-ui;background:linear-gradient(135deg,#ff7eb3,#ffc6dd);overflow:hidden}
+*{box-sizing:border-box}
+.app{height:100dvh;display:flex;align-items:center;justify-content:center}
+.phone{position:relative;width:min(390px,100vw);height:min(844px,100dvh);background:linear-gradient(#ffb7d3,#ffdbe8);overflow:hidden}
+@media(min-width:700px){.phone{border:8px solid #222;border-radius:40px;box-shadow:0 20px 50px rgba(0,0,0,.3);height:844px}.island{display:block}}
+.island{display:none;position:absolute;top:12px;left:50%;transform:translateX(-50%);width:120px;height:28px;background:#111;border-radius:99px}
+.header{text-align:center;color:#ff2f74;font-size:34px;font-weight:700;padding:56px 0 10px}
+.hearts span{position:absolute;bottom:-20px;animation:f 10s linear infinite;opacity:.5}
+@keyframes f{to{transform:translateY(-120vh) rotate(360deg);opacity:0}}
+.card{width:86%;max-width:320px;margin:0 auto;background:#fff;border-radius:28px;padding:24px;text-align:center;box-shadow:0 20px 40px rgba(0,0,0,.15);transition:.35s}
+.photo{width:180px;height:180px;border-radius:24px;margin:auto;background:linear-gradient(#ffe,#ddd);display:flex;align-items:center;justify-content:center;font-size:90px}
+.name{font-size:42px;font-weight:700;margin:18px 0 8px}.bio{color:#666;line-height:1.5}
+.popup{opacity:0;transition:.3s;margin:16px auto;width:86%;background:#222;color:#fff;padding:12px;border-radius:14px;text-align:center}
+.popup.show{opacity:1}
+.btns{position:absolute;bottom:30px;width:100%;display:flex;justify-content:center;gap:26px}
+button{width:78px;height:78px;border:none;border-radius:50%;font-size:32px}
+.no{background:#fff;color:#ff416c}.yes{background:#ff416c;color:#fff}
+.match{position:absolute;inset:0;background:rgba(255,255,255,.97);display:none;flex-direction:column;justify-content:center;align-items:center;padding:24px;text-align:center}
+.match.show{display:flex}
+.bar{height:10px;background:#eee;border-radius:99px;margin:10px 0;width:240px}
+.fill{height:100%;background:#ff4d82;border-radius:99px;animation:g 1s forwards;transform-origin:left}
+@keyframes g{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+.letter{background:#fff;padding:18px;border-radius:18px;max-width:300px;box-shadow:0 8px 20px rgba(0,0,0,.08)}
+</style></head>
+<body><div class=app><div class=phone>
+<div class=island></div><div class=hearts id=h></div>
+<div class=header>❤️ SoulMatch</div>
+<div id=popup class=popup>🤭 Good try, you can't run away from me ❤️</div>
+<div id=card class=card>
+<div class=photo>😎</div>
+<div class=name>Sahil</div>
+<div class=bio>Graphic Designer • Coffee Lover ☕<br>Looking for My Forever ❤️</div>
+</div>
+<div class=btns><button class=no id=l>✕</button><button class=yes id=r>❤</button></div>
+<div class=match id=m>
+<div style="font-size:90px">👩🏻‍❤️‍👨🏻</div>
+<h1 style="color:#ff2f74">You Found Your Soulmate 💖</h1>
+<div>Humour<div class=bar><div class=fill></div></div></div>
+<div>Loyalty<div class=bar><div class=fill></div></div></div>
+<div>Forever<div class=bar><div class=fill></div></div></div>
+<div class=letter><b>Dear You ❤️</b><br><br>Out of millions of profiles, you swiped right on mine.<br><br>I promise to make every day feel like our best match.<br><br>— Sahil</div>
+</div>
+</div></div>
+<script>
+for(let i=0;i<30;i++){let s=document.createElement('span');s.innerHTML=Math.random()>.5?'💖':'💕';s.style.left=Math.random()*100+'%';s.style.fontSize=(14+Math.random()*16)+'px';s.style.animationDuration=(6+Math.random()*5)+'s';document.getElementById('h').appendChild(s);}
+l.onclick=()=>{card.style.transform='translateX(-70px) rotate(-8deg)';setTimeout(()=>{card.style.transform='translateX(0)';popup.classList.add('show')},150);setTimeout(()=>popup.classList.remove('show'),1800);}
+r.onclick=()=>{card.style.transform='translateX(140%) rotate(20deg)';card.style.opacity=0;setTimeout(()=>m.classList.add('show'),350);}
+</script></body></html>
